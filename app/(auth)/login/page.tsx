@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/src/lib/supabase/client'
+import { createClient } from '@/utils/supabase/client'
 import { handleAuthError } from '@/src/lib/client-auth'
 
 export default function LoginPage() {

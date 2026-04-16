@@ -1,6 +1,7 @@
 'use server'
 
-import { createClient } from '@/src/lib/supabase/server'
+import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
 import { getCurrentUser } from '@/src/lib/auth'
 import { z } from 'zod'
 
@@ -28,7 +29,8 @@ export async function createDeck(formData: unknown) {
     if (!user) throw new Error('Unauthorized')
 
     const data = createDeckSchema.parse(formData)
-    const supabase = await createClient()
+    const cookieStore = await cookies()
+    const supabase = createClient(cookieStore)
 
     const { data: deck, error } = await supabase
       .from('decks')
@@ -58,7 +60,8 @@ export async function updateDeck(deckId: string, formData: unknown) {
     if (!user) throw new Error('Unauthorized')
 
     const data = updateDeckSchema.parse(formData)
-    const supabase = await createClient()
+    const cookieStore = await cookies()
+    const supabase = createClient(cookieStore)
 
     // Verify ownership
     const { data: deck } = await supabase
@@ -92,7 +95,8 @@ export async function deleteDeck(deckId: string) {
     const user = await getCurrentUser()
     if (!user) throw new Error('Unauthorized')
 
-    const supabase = await createClient()
+    const cookieStore = await cookies()
+    const supabase = createClient(cookieStore)
 
     // Verify ownership
     const { data: deck } = await supabase
@@ -125,7 +129,8 @@ export async function createCard(formData: unknown) {
     if (!user) throw new Error('Unauthorized')
 
     const data = createCardSchema.parse(formData)
-    const supabase = await createClient()
+    const cookieStore = await cookies()
+    const supabase = createClient(cookieStore)
 
     // Verify deck ownership
     const { data: deck } = await supabase
@@ -182,7 +187,8 @@ export async function updateCard(cardId: string, formData: unknown) {
     if (!user) throw new Error('Unauthorized')
 
     const data = updateCardSchema.parse(formData)
-    const supabase = await createClient()
+    const cookieStore = await cookies()
+    const supabase = createClient(cookieStore)
 
     // Verify ownership
     const { data: card } = await supabase
@@ -213,7 +219,8 @@ export async function deleteCard(cardId: string) {
     const user = await getCurrentUser()
     if (!user) throw new Error('Unauthorized')
 
-    const supabase = await createClient()
+    const cookieStore = await cookies()
+    const supabase = createClient(cookieStore)
 
     // Verify ownership
     const { data: card } = await supabase

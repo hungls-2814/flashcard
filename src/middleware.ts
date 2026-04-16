@@ -1,22 +1,8 @@
-import { type NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/src/lib/supabase/middleware'
+import { type NextRequest } from "next/server"
+import { createClient } from "@/utils/supabase/middleware"
 
 export async function middleware(request: NextRequest) {
-  try {
-    const { supabase, response } = createClient(request)
-
-    // Refresh session if it exists
-    await supabase.auth.getSession()
-
-    return response
-  } catch (error) {
-    console.error('Middleware error:', error)
-    return NextResponse.next({
-      request: {
-        headers: request.headers,
-      },
-    })
-  }
+  return createClient(request)
 }
 
 export const config = {
@@ -28,6 +14,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public folder
      */
-    '/((?!_next/static|_next/image|favicon.ico|public).*)',
+    "/((?!_next/static|_next/image|favicon.ico|public).*)",
   ],
 }
