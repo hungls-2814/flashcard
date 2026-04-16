@@ -101,40 +101,40 @@ description: "Task list for Flashcard Mastery - Spaced Repetition System impleme
 **Blockers**: Phase 3 complete  
 **User Story**: US2 - Deck & Card Management (P2)
 
-- [ ] T033 Create `/src/app/(protected)/layout.tsx` with protected route wrapper and auth check
-- [ ] T034 Create `/src/app/(protected)/dashboard/page.tsx` with deck list layout and empty state
-- [ ] T035 Create `/src/components/dashboard/DeckList.tsx` component: render array of DeckCard components with stats
-- [ ] T036 Create `/src/components/dashboard/DeckCard.tsx` component:
+- [x] T033 Create `/src/app/(protected)/layout.tsx` with protected route wrapper and auth check
+- [x] T034 Create `/src/app/(protected)/dashboard/page.tsx` with deck list layout and empty state
+- [x] T035 Create `/src/components/dashboard/DeckList.tsx` component: render array of DeckCard components with stats
+- [x] T036 Create `/src/components/dashboard/DeckCard.tsx` component:
   - Display deck title, description, color_code (as background)
   - Show stats: "X due today", "Y new"
   - Buttons: "Study", "Manage", delete icon
-- [ ] T037 [P] Create `/src/components/dashboard/CreateDeckModal.tsx`:
+- [x] T037 [P] Create `/src/components/dashboard/CreateDeckModal.tsx`:
   - Form: title input, description textarea, color picker
   - Submit: call Server Action to create deck
   - Validation: Zod schema validation on client + server
-- [ ] T038 Create `/src/app/(protected)/deck/[deckId]/page.tsx` with deck detail page and card list
-- [ ] T039 Create `/src/components/deck/CardList.tsx` component: render array of CardItem components
-- [ ] T040 Create `/src/components/deck/CardItem.tsx` component:
+- [x] T038 Create `/src/app/(protected)/deck/[deckId]/page.tsx` with deck detail page and card list
+- [x] T039 Create `/src/components/deck/CardList.tsx` component: render array of CardItem components
+- [x] T040 Create `/src/components/deck/CardItem.tsx` component:
   - Display card preview (front in bold, back below)
   - Buttons: Edit, Delete with confirmation modal
-- [ ] T041 [P] Create `/src/components/deck/CreateCardModal.tsx`:
+- [x] T041 [P] Create `/src/components/deck/CreateCardModal.tsx`:
   - Form: front textarea (Markdown), back textarea (Markdown), live preview
   - Markdown preview using `react-markdown`
   - Submit: call Server Action to create card
-- [ ] T042 [P] Create `/src/components/deck/EditCardModal.tsx`:
+- [x] T042 [P] Create `/src/components/deck/EditCardModal.tsx`:
   - Pre-populate front/back from card data
   - Same form + preview as CreateCardModal
   - Submit: call Server Action to update card
-- [ ] T043 Create `/src/actions/deck.actions.ts` Server Actions:
+- [x] T043 Create `/src/actions/deck.actions.ts` Server Actions:
   - `createDeck(title, description, color_code)`: validate with Zod, insert to DB
   - `updateDeck(deckId, title?, description?, color_code?)`: validate, update with DB
   - `deleteDeck(deckId)`: cascade delete cards and card_progress
-- [ ] T044 Create `/src/actions/card.actions.ts` Server Actions:
+- [x] T044 Create `/src/actions/card.actions.ts` Server Actions:
   - `createCard(deckId, front, back)`: validate with Zod, insert to DB + initialize card_progress
   - `updateCard(cardId, front?, back?)`: validate, update DB
   - `deleteCard(cardId)`: cascade delete card_progress
-- [ ] T045 [P] Create `/src/components/common/Header.tsx` with navigation, user profile button, logout
-- [ ] T046 [P] Create `/src/components/common/Sidebar.tsx` with deck navigation links
+- [x] T045 [P] Create `/src/components/common/Header.tsx` with navigation, user profile button, logout
+- [x] T046 [P] Create `/src/components/common/Sidebar.tsx` with deck navigation links
 - [ ] T047 [Integration Test] Test deck creation flow: form → validation → database persist → UI update
 - [ ] T048 [Integration Test] Test card CRUD: create → edit → delete, verify database changes
 
