@@ -37,5 +37,4 @@ create index idx_card_progress_user_id on card_progress(user_id);
 create index idx_card_progress_next_review_date on card_progress(next_review_date);
 
 -- Composite index for querying "due today" cards
-create index idx_card_progress_user_due_today on card_progress(user_id, next_review_date) 
-  where next_review_date <= now();
+create index idx_card_progress_user_due_today on card_progress(user_id, next_review_date);
