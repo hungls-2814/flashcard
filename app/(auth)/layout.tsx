@@ -6,10 +6,14 @@ export default async function AuthLayout({
 }: {
   children: React.ReactNode
 }) {
-  const user = await getCurrentUser()
-  
-  if (user) {
-    redirect('/dashboard')
+  try {
+    const user = await getCurrentUser()
+    if (user) {
+      redirect('/dashboard')
+    }
+  } catch (e) {
+    // If auth check fails (e.g. missing env vars), still render the page
+    console.error('[AuthLayout] Auth check failed:', e)
   }
 
   return (
