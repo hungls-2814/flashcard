@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import '@/src/styles/globals.css'
+import ClientProviders from '@/src/components/providers'
 
 export const metadata: Metadata = {
   title: 'Flashcard Mastery - Spaced Repetition Learning System',
@@ -23,9 +24,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className="bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="min-h-screen w-full">
-          {children}
-        </div>
+        <ClientProviders>
+          <div className="min-h-screen w-full">
+            {children}
+          </div>
+        </ClientProviders>
       </body>
     </html>
   )

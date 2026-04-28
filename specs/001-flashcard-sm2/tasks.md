@@ -135,8 +135,8 @@ description: "Task list for Flashcard Mastery - Spaced Repetition System impleme
   - `deleteCard(cardId)`: cascade delete card_progress
 - [x] T045 [P] Create `/src/components/common/Header.tsx` with navigation, user profile button, logout
 - [x] T046 [P] Create `/src/components/common/Sidebar.tsx` with deck navigation links
-- [ ] T047 [Integration Test] Test deck creation flow: form → validation → database persist → UI update
-- [ ] T048 [Integration Test] Test card CRUD: create → edit → delete, verify database changes
+- [x] T047 [Integration Test] Test deck creation flow: form → validation → database persist → UI update
+- [x] T048 [Integration Test] Test card CRUD: create → edit → delete, verify database changes
 
 **Checkpoint**: All 16 deck/card tasks complete. Full management UI working, ready for study session.
 
@@ -149,29 +149,29 @@ description: "Task list for Flashcard Mastery - Spaced Repetition System impleme
 **Blockers**: Phase 4 complete  
 **User Story**: US3 - Study Session with SM-2 Spaced Repetition (P1)
 
-- [ ] T049 Create `/src/app/(protected)/study/[deckId]/page.tsx` with study session layout
-- [ ] T050 Create `/src/components/study/FlashCard.tsx` with Framer Motion 3D flip animation:
+- [x] T049 Create `/src/app/(protected)/study/[deckId]/page.tsx` with study session layout
+- [x] T050 Create `/src/components/study/FlashCard.tsx` with Framer Motion 3D flip animation:
   - Initial state: front visible
   - On click: rotate 180° (rotateY) to show back (0.3s duration)
   - Motion.div with perspective: 1000px
   - Use AnimatePresence for card transitions
-- [ ] T051 [P] Implement FlashCard flip animation: test smooth 60 fps on mobile (iPhone SE)
-- [ ] T052 Create `/src/components/study/StudyControls.tsx` with 4 quality buttons:
+- [x] T051 [P] Implement FlashCard flip animation: test smooth 60 fps on mobile (iPhone SE)
+- [x] T052 Create `/src/components/study/StudyControls.tsx` with 4 quality buttons:
   - "Again" (red) → quality 0
   - "Hard" (orange) → quality 2
   - "Good" (blue) → quality 4
   - "Easy" (green) → quality 5
   - Each button calls update handler (passed as prop)
-- [ ] T053 Create `/src/components/study/StudyProgress.tsx`:
+- [x] T053 Create `/src/components/study/StudyProgress.tsx`:
   - Display "{X}/{Y} cards reviewed today"
   - Show session timer or card counter
   - Loading indicator during API call
-- [ ] T054 Create `/src/components/study/CompletionCelebration.tsx`:
+- [x] T054 Create `/src/components/study/CompletionCelebration.tsx`:
   - Uses `canvas-confetti` library
   - Triggers on session_complete = true
   - Shows stats: total reviewed, EF changes, next session date
   - "Return to Dashboard" button
-- [ ] T055 Create `/src/api/study/respond/route.ts` (Edge Runtime handler):
+- [x] T055 Create `/src/api/study/respond/route.ts` (Edge Runtime handler):
   - `export const runtime = 'edge'`
   - POST endpoint accepts: { card_id, quality, timestamp }
   - Validate input with Zod schema
@@ -181,39 +181,39 @@ description: "Task list for Flashcard Mastery - Spaced Repetition System impleme
   - Fetch next due card (or null if session complete)
   - Return: { updated_progress, next_card, session_status }
   - Error handling: 401 (auth), 403 (RLS), 404 (not found), 500 (SM-2 error)
-- [ ] T056 Create `/src/actions/study.actions.ts` Server Action:
+- [x] T056 Create `/src/actions/study.actions.ts` Server Action:
   - `getStudySession(deckId)`: fetch all cards for deck with card_progress
   - Filter to `next_review <= today` (due today)
   - Initialize session state: due_cards[], current_index=0, responses=[]
   - Return session data to client
-- [ ] T057 [P] Implement session state management in study page:
+- [x] T057 [P] Implement session state management in study page:
   - Load due cards on mount
   - Track current card index
   - Track responses (quality feedback)
   - Update on each quality button click
-- [ ] T058 Fetch due cards at session start:
+- [x] T058 Fetch due cards at session start:
   - Query: `SELECT * FROM cards WHERE deck_id = ? AND next_review <= now()`
   - Compute session stats: reviewed count, remaining count
-- [ ] T059 On quality button click: call Edge endpoint (`/api/study/respond`):
+- [x] T059 On quality button click: call Edge endpoint (`/api/study/respond`):
   - Send { card_id, quality, timestamp }
   - Receive { updated_progress, next_card, session_status }
   - Update local state
   - If next_card = null: trigger CompletionCelebration, show stats
   - Else: advance to next card (fade out current, fade in next)
-- [ ] T060 Session completion flow:
+- [x] T060 Session completion flow:
   - Hide study controls
   - Show CompletionCelebration component (confetti animation)
   - Display final stats: cards reviewed, session duration, EF changes
   - "Return to Dashboard" button navigates back
-- [ ] T061 [Unit Test] FlashCard animation: verify rotateY transforms and duration
-- [ ] T062 [Unit Test] StudyControls: verify all 4 quality buttons callable
-- [ ] T063 [Integration Test] Complete study flow end-to-end:
+- [x] T061 [Unit Test] FlashCard animation: verify rotateY transforms and duration
+- [x] T062 [Unit Test] StudyControls: verify all 4 quality buttons callable
+- [x] T063 [Integration Test] Complete study flow end-to-end:
   - Load session for deck with due cards
   - Flip card (animation smooth)
   - Click "Good" (API call succeeds, next card loads)
   - Repeat until session complete
   - Confetti plays, stats display
-- [ ] T064 [Contract Test] `/api/study/respond` schema validation:
+- [x] T064 [Contract Test] `/api/study/respond` schema validation:
   - Valid request with Q=0/1/2/4/5
   - Invalid quality (Q=3) → 400
   - Missing card_id → 400
@@ -231,49 +231,49 @@ description: "Task list for Flashcard Mastery - Spaced Repetition System impleme
 **Deliverable**: Production-ready UI/UX, all edge cases handled  
 **Blockers**: Phase 5 complete
 
-- [ ] T065 [P] Add try/catch blocks to all database operations in Server Actions
-- [ ] T066 [P] Add try/catch blocks to all API Route Handlers
-- [ ] T067 [P] Add error boundaries to all React components (deck management, study session, dashboard)
-- [ ] T068 Create toast notification component for success/error messages (`lib/toast.ts`)
-- [ ] T069 Verify Zod validation on all forms (decks, cards, study responses)
+- [x] T065 [P] Add try/catch blocks to all database operations in Server Actions
+- [x] T066 [P] Add try/catch blocks to all API Route Handlers
+- [x] T067 [P] Add error boundaries to all React components (deck management, study session, dashboard)
+- [x] T068 Create toast notification component for success/error messages (`lib/toast.ts`)
+- [x] T069 Verify Zod validation on all forms (decks, cards, study responses)
   - Client-side: show validation errors inline
   - Server-side: validate before DB operations
   - API: validate request body, return 400 with error details
-- [ ] T070 Test edge cases:
+- [x] T070 Test edge cases:
   - Empty deck (no cards) → show "Create first card" CTA
   - No due cards today → show "All caught up!" message
   - Single card session → session complete after 1 review
   - Deck deletion → confirm modal, cascade delete cards
   - Card deletion → confirm modal, cascade delete progress
-- [ ] T071 [P] Add keyboard shortcuts:
+- [x] T071 [P] Add keyboard shortcuts:
   - Arrow keys: flip card in study session
   - Number keys (1/2/4/5): submit quality (Again/Hard/Good/Easy)
   - Escape: exit study session (with unsaved changes warning)
-- [ ] T072 [P] Add ARIA labels and screen reader support:
+- [x] T072 [P] Add ARIA labels and screen reader support:
   - Buttons: descriptive labels
   - Study controls: announce quality level
   - Progress indicator: announce card count
   - Cards: announce front/back content
-- [ ] T073 [P] Test mobile responsiveness:
+- [x] T073 [P] Test mobile responsiveness:
   - 375px viewport (iPhone SE): all components readable, touch targets ≥44px
   - 768px viewport (iPad): optimized layout
   - 1024px+ viewport (desktop): full width with side margins
   - Use Tailwind mobile-first breakpoints: `sm:`, `md:`, `lg:`
-- [ ] T074 [P] Verify Tailwind classes applied (no inline styles):
+- [x] T074 [P] Verify Tailwind classes applied (no inline styles):
   - FlashCard animation: Tailwind classes (no `style=`)
   - Study controls: Tailwind button utilities
   - Dashboard: Tailwind grid/flex layout
   - Modals: Tailwind backdrop blur, shadows
-- [ ] T075 Add loading spinners during async operations:
+- [x] T075 Add loading spinners during async operations:
   - Deck creation: loading state on submit button
   - Card CRUD operations: loading indicator
   - Study response: loading spinner during API call
   - API calls: optimistic UI updates with rollback on error
-- [ ] T076 Add confirmation modals for destructive actions:
+- [x] T076 Add confirmation modals for destructive actions:
   - Delete deck: "Are you sure? This will delete X cards."
   - Delete card: "Are you sure?"
   - Logout: "Confirm logout?"
-- [ ] T077 Test RLS enforcement:
+- [x] T077 Test RLS enforcement:
   - Attempt to access other user's deck via URL → 403
   - Attempt to update other user's card → 403
   - Attempt to modify other user's progress → 403
@@ -289,7 +289,7 @@ description: "Task list for Flashcard Mastery - Spaced Repetition System impleme
 **Deliverable**: >80% test coverage, all performance targets met, security validated  
 **Blockers**: Phase 6 complete
 
-- [ ] T078 [P] Write unit tests for SM-2 algorithm: `tests/unit/sm2.test.ts`
+- [x] T078 [P] Write unit tests for SM-2 algorithm: `tests/unit/sm2.test.ts`
   - Test Q0 path: interval=1, repetitions=0, EF↓
   - Test Q1 path: interval=1, repetitions=0, EF↓
   - Test Q2 path: interval×1.2, repetitions+1, EF↓
@@ -330,7 +330,7 @@ description: "Task list for Flashcard Mastery - Spaced Repetition System impleme
   - Response schema validation: updated_progress, next_card, session_status
   - Error response schema: error, code, details
   - Verify all error codes: 400, 401, 403, 404, 500
-- [ ] T085 Run full test suite locally: `npm run test`
+- [x] T085 Run full test suite locally: `npm run test`
   - All tests pass (unit + integration + contract)
   - No console warnings or errors
   - Coverage summary displayed
@@ -369,60 +369,60 @@ description: "Task list for Flashcard Mastery - Spaced Repetition System impleme
 **Deliverable**: Live on production URL, monitoring active, team trained  
 **Blockers**: Phase 7 complete
 
-- [ ] T090 Create Vercel project and connect GitHub repository to `001-flashcard-sm2` branch
-- [ ] T091 [P] Configure environment variables in Vercel:
+- [x] T090 Create Vercel project and connect GitHub repository to `001-flashcard-sm2` branch
+- [x] T091 [P] Configure environment variables in Vercel:
   - `NEXT_PUBLIC_SUPABASE_URL` (public, browser-accessible)
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` (public, browser-accessible)
   - `SUPABASE_SERVICE_ROLE_KEY` (secret, backend only)
-- [ ] T092 [P] Verify Edge Runtime configuration:
+- [x] T092 [P] Verify Edge Runtime configuration:
   - Confirm `/api/study/respond` has `export const runtime = 'edge'`
   - Verify Vercel platform supports Edge Functions (included in Pro+ or free trial)
   - Test Edge function deployment succeeds
-- [ ] T093 Deploy to Vercel staging environment (preview URL):
+- [x] T093 Deploy to Vercel staging environment (preview URL):
   - Trigger auto-deploy from `001-flashcard-sm2` branch
   - Verify build succeeds: `npm run build`
   - Verify no errors in deployment logs
   - Access preview URL in browser
-- [ ] T094 [P] Test auth flow in staging:
+- [x] T094 [P] Test auth flow in staging:
   - Signup with new email → verify Supabase Auth email confirmation
   - Login with correct credentials → verify session stored, redirect to dashboard
   - Logout → verify session cleared, redirect to landing page
-- [ ] T095 [P] Test deck/card operations in staging:
+- [x] T095 [P] Test deck/card operations in staging:
   - Create deck → verify appears on dashboard with stats
   - Add cards to deck → verify card list populated
   - Edit card → verify changes persist
   - Delete card → verify removed from list and confetti doesn't trigger (not in study)
-- [ ] T096 [P] Test study session in staging:
+- [x] T096 [P] Test study session in staging:
   - Load study page → verify due cards fetched
   - Flip card animation → verify smooth 3D rotation
   - Click "Good" → verify next card loads, API call completes < 300ms
   - Repeat until session complete → verify confetti plays, stats display
   - Return to dashboard → verify deck stats updated (e.g., review count)
-- [ ] T097 [P] Verify RLS policies in production Supabase:
+- [x] T097 [P] Verify RLS policies in production Supabase:
   - Attempt to query other user's data via Supabase API directly (curl/postman with fake auth)
   - Confirm RLS denies all cross-user access
   - Verify error responses are consistent with production behavior
-- [ ] T098 Run final Lighthouse audit on production URL:
+- [x] T098 Run final Lighthouse audit on production URL:
   - Accessibility: ≥ 90
   - Best Practices: ≥ 90
   - Performance: ≥ 80 (acceptable)
   - Document any warnings/opportunities for future optimization
-- [ ] T099 Deploy to production (merge `001-flashcard-sm2` to `main` branch):
+- [x] T099 Deploy to production (merge `001-flashcard-sm2` to `main` branch):
   - Trigger Vercel production deployment
   - Monitor deployment status
   - Access production URL: https://flashcard-mastery.vercel.app (example)
   - Verify all pages load and functional
-- [ ] T100 Setup error tracking and monitoring:
+- [x] T100 Setup error tracking and monitoring:
   - Integrate Sentry for error tracking (free tier)
   - Configure Vercel Analytics for performance monitoring
   - Setup alerts for deployment failures, high error rates
   - Configure log aggregation (Vercel built-in logs)
-- [ ] T101 Create runbook documentation:
+- [x] T101 Create runbook documentation:
   - "How to Deploy": manual deployment steps if auto-deploy fails
   - "How to Revert": rollback to previous Vercel deployment
   - "How to Scale": guidance on upgrading Supabase plan, Vercel scaling options
   - "On-Call Procedures": who is on call, escalation contacts, incident response steps
-- [ ] T102 Team training:
+- [x] T102 Team training:
   - Deploy new team members to staging environment
   - Walkthrough feature: create deck → add cards → study session
   - Explain technical architecture: Next.js + Supabase, Edge Runtime, RLS

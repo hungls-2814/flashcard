@@ -1,0 +1,33 @@
+# Ignore these files during Vercel builds
+.git
+.gitignore
+.next/cache
+.env.local
+.env.*.local
+node_modules/.cache
+.DS_Store
+.vscode
+.idea
+.eslintignore
+
+# Test and documentation
+jest.config.js
+jest.setup.js
+tests/
+specs/
+README.md
+
+# Docker (not needed in Vercel)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# CI/CD configs
+.github/workflows/*.yml
+.gitlab-ci.yml
+.travis.yml
+
+# Development only
+.husky
+.prettierrc
+.editorconfig

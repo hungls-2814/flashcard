@@ -110,10 +110,15 @@ export default function DeckList() {
 
   if (decks.length === 0) {
     return (
-      <div className="text-center py-12">
-        <p className="text-lg text-gray-600 mb-4">No decks yet</p>
-        <p className="text-sm text-gray-500">
-          Create your first deck to get started!
+      <div className="flex flex-col items-center justify-center py-20 px-6 text-center">
+        <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-indigo-50">
+          <svg className="h-10 w-10 text-indigo-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-bold text-gray-900 mb-2">No decks yet</h3>
+        <p className="text-gray-500 max-w-xs">
+          Create your first flashcard deck to start learning with spaced repetition.
         </p>
       </div>
     )
