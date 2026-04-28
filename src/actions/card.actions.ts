@@ -48,14 +48,14 @@ export async function createCard(formData: unknown) {
 
     if (cardError) throw cardError
 
-    // Initialize card progress
+    // Initialize card progress (new card with interval_days = 0)
     const { error: progressError } = await supabase
       .from('card_progress')
       .insert({
         card_id: card.id,
         user_id: user.id,
         ease_factor: 2.5,
-        interval_days: 1,
+        interval_days: 0,
         repetitions: 0,
         next_review_date: new Date().toISOString(),
       })
